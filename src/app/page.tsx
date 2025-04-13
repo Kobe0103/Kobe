@@ -4,7 +4,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import emailjs from '@emailjs/browser'
-import { Analytics } from "@vercel/analytics/react"
 
 type Project = {
   title: string
