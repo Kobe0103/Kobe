@@ -104,10 +104,10 @@ export default function Portfolio() {
       setModalMessage('Sending your message...')
       
       const result = await emailjs.sendForm(
-        'service_36ykr6b',
-        'template_x1u9fpm',
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         formRef.current,
-        'QmYuwTc4YP7J2Zosz'
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
       )
       
       setModalMessage('Your message has been sent successfully! I\'ll get back to you soon.')
