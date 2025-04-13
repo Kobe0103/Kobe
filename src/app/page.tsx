@@ -103,14 +103,14 @@ export default function Portfolio() {
       setModalOpen(true)
       setModalMessage('Sending your message...')
       
-      const result = await emailjs.sendForm(
+      await emailjs.sendForm(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         formRef.current,
         process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
       )
       
-      setModalMessage('Your message has been sent successfully! I\'ll get back to you soon.')
+      setModalMessage('Your message has been sent successfully! I&apos;ll get back to you soon.')
       formRef.current.reset()
       setIsSending(false)
       
@@ -443,7 +443,7 @@ function ContactSection({ onSubmit, formRef }: ContactSectionProps) {
         <div className="flex flex-col lg:flex-row gap-12">
           <div className="lg:w-1/2">
             <p className="mb-6 text-gray-300 hover:text-white transition-all duration-300">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
             </p>
             <div className="space-y-4">
               <div className="text-gray-300 hover:text-white transition-all duration-300">
