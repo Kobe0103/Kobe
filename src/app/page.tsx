@@ -166,6 +166,19 @@ export default function Portfolio() {
         <meta name="description" content="Personal portfolio of Kobe Janssens" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/favicon.png" />
+          {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://kobejanssens.vercel.app/" />
+        <meta property="og:title" content="Kobe Janssens | Web Developer" />
+        <meta property="og:description" content="Personal portfolio of Kobe Janssens, a web developer specializing in modern, functional websites." />
+        <meta property="og:image" content="https://kobejanssens.vercel.app/images/preview-image.png" />
+  
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://kobejanssens.vercel.app/" />
+        <meta property="twitter:title" content="Kobe Janssens | Web Developer" />
+        <meta property="twitter:description" content="Personal portfolio of Kobe Janssens, a web developer specializing in modern, functional websites." />
+        <meta property="twitter:image" content="https://kobejanssens.vercel.app/images/preview-image.png" />
       </Head>
 
       <Header 
