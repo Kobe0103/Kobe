@@ -71,7 +71,7 @@ export default function Portfolio() {
     {
       title: "Cobalt QOL website",
       description: "The personal website for Cobalt QOL mod, this is a Quality-Of-Life mod for hypixel skyblock and showcases the development team and other important things about cobalt.",
-      image: "/images/cobalt_logo.png",
+      image: "/images/cobalt_logo_noBG.png",
       tags: ["HTML", "CSS", "JavaScript", "Tailwind", "Next.js"],
       liveUrl: "https://quiteboring.dev/cobalt",
       codeUrl: "https://github.com/Kobe0103/quiteboring.github.io/tree/master/app/cobalt"
