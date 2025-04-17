@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import emailjs from '@emailjs/browser'
+import { Analytics } from "@vercel/analytics/react"
 
 type Project = {
   title: string
@@ -68,12 +69,12 @@ export default function Portfolio() {
 
   const projects: Project[] = [
     {
-      title: "A Gambling Website",
-      description: "Concept of a gambling site where you can gamble with fake money.",
-      image: "/images/casino.png",
-      tags: ["HTML", "CSS", "JavaScript", "Tailwind"],
-      liveUrl: "https://gamble1.netlify.app",
-      codeUrl: "https://github.com/Kobe0103/Gamble"
+      title: "Cobalt QOL website",
+      description: "The personal website for Cobalt QOL mod, this is a Quality-Of-Life mod for hypixel skyblock and showcases the development team and other important things about cobalt.",
+      image: "/images/cobalt_logo.png",
+      tags: ["HTML", "CSS", "JavaScript", "Tailwind", "Next.js"],
+      liveUrl: "https://quiteboring.dev/cobalt",
+      codeUrl: "https://github.com/Kobe0103/quiteboring.github.io/tree/master/app/cobalt"
     },
     {
       title: "Quiteboring.dev",
