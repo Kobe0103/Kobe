@@ -84,12 +84,12 @@ export default function Portfolio() {
       codeUrl: "https://github.com/Kobe0103/quiteboring.github.io"
     },
     {
-      title: "Task Forge",
-      description: "An advanced task managing website made for learning web development.",
-      image: "/images/tasker.png",
-      tags: ["HTML", "CSS", "JavaScript"],
-      liveUrl: "https://task-managingqsdsqd.netlify.app",
-      codeUrl: "https://github.com/Kobe0103/Task-Manager"
+      title: "E-Commerce Store Template",
+      description: "A clean looking E-Commerce Store Template with full source code open on github to get",
+      image: "/images/e-commerce.png",
+      tags: ["HTML", "CSS", "JavaScript", "React", "Tailwind"],
+      liveUrl: "https://github.com/Kobe0103/E-Commerce-Store-Template",
+      codeUrl: "https://vercel.com/kobe0103s-projects/e-commerce-store-template"
     }
   ]
 
