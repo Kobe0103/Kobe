@@ -88,8 +88,8 @@ export default function Portfolio() {
       description: "A clean looking E-Commerce Store Template with full source code open on github to get",
       image: "/images/8209584.png",
       tags: ["HTML", "CSS", "JavaScript", "React", "Tailwind"],
-      liveUrl: "https://github.com/Kobe0103/E-Commerce-Store-Template",
-      codeUrl: "https://e-commerce-store-template.vercel.app/"
+      liveUrl: "https://e-commerce-store-template.vercel.app/",
+      codeUrl: "https://github.com/Kobe0103/E-Commerce-Store-Template"
     }
   ]
 
