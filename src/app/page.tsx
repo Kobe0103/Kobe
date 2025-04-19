@@ -78,7 +78,7 @@ export default function Portfolio() {
     {
       title: "Quiteboring.dev",
       description: "A developer portfolio website I built for a Minecraft mod developer.",
-      image: "/images/dev.png",
+      image: "/images/8209584.png",
       tags: ["HTML", "Tailwind", "JavaScript", "Next.js"],
       liveUrl: "https://quiteboring.dev/",
       codeUrl: "https://github.com/Kobe0103/quiteboring.github.io"
@@ -86,7 +86,7 @@ export default function Portfolio() {
     {
       title: "E-Commerce Store Template",
       description: "A clean looking E-Commerce Store Template with full source code open on github to get",
-      image: "/images/e-commerce.png",
+      image: "/images/.png",
       tags: ["HTML", "CSS", "JavaScript", "React", "Tailwind"],
       liveUrl: "https://github.com/Kobe0103/E-Commerce-Store-Template",
       codeUrl: "https://e-commerce-store-template.vercel.app/"
