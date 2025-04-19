@@ -89,7 +89,7 @@ export default function Portfolio() {
       image: "/images/e-commerce.png",
       tags: ["HTML", "CSS", "JavaScript", "React", "Tailwind"],
       liveUrl: "https://github.com/Kobe0103/E-Commerce-Store-Template",
-      codeUrl: "https://vercel.com/kobe0103s-projects/e-commerce-store-template"
+      codeUrl: "https://e-commerce-store-template.vercel.app/"
     }
   ]
 
