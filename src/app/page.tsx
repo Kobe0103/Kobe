@@ -159,6 +159,31 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-black text-gray-300 relative overflow-x-hidden cursor-default">
+      {/* Custom Scrollbar Styles */}
+      <style jsx global>{`
+        /* For WebKit browsers */
+        ::-webkit-scrollbar {
+          width: 10px;
+          height: 10px;
+        }
+        ::-webkit-scrollbar-track {
+          background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: #7e22ce;
+          border-radius: 9999px;
+          border: 2px solid #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #9333ea;
+        }
+        /* For Firefox */
+        * {
+          scrollbar-width: thin;
+          scrollbar-color: #7e22ce #0a0a0a;
+        }
+      `}</style>
+
       {/* Modal Component */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
