@@ -14,6 +14,14 @@ type Project = {
   codeUrl: string
 }
 
+type Design = {
+  title: string
+  description: string
+  image: string
+  tags: string[]
+  figmaUrl: string
+}
+
 interface ContactSectionProps {
   onSubmit: (e: React.FormEvent) => void
   formRef: React.RefObject<HTMLFormElement | null>
@@ -27,6 +35,7 @@ export default function Portfolio() {
   const [modalOpen, setModalOpen] = useState(false)
   const [modalMessage, setModalMessage] = useState('')
   const [isSending, setIsSending] = useState(false)
+  const [activeTab, setActiveTab] = useState<'development' | 'design'>('development')
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
@@ -84,12 +93,36 @@ export default function Portfolio() {
       codeUrl: "https://github.com/Kobe0103/quiteboring.github.io"
     },
     {
-      title: "E-Commerce Store Template",
-      description: "A clean looking E-Commerce Store Template with full source code open on github to get",
-      image: "/images/8209584.png",
-      tags: ["HTML", "CSS", "JavaScript", "React", "Tailwind"],
-      liveUrl: "https://e-commerce-store-template.vercel.app/",
-      codeUrl: "https://github.com/Kobe0103/E-Commerce-Store-Template"
+      title: "Task Forge",
+      description: "An advanced task managing website made for learning web development.",
+      image: "/images/tasker.png",
+      tags: ["HTML", "CSS", "JavaScript"],
+      liveUrl: "https://task-managingqsdsqd.netlify.app",
+      codeUrl: "https://github.com/Kobe0103/Task-Manager"
+    }
+  ]
+
+  const designs: Design[] = [
+    {
+      title: "A website template",
+      description: "A sleek black landing page design for website that you can use for almost everything.",
+      image: "/images/figma1.png",
+      tags: ["UI Design", "Landing Page", "Style Guide", "Dark Mode"],
+      figmaUrl: "https://www.figma.com/design/zjVkLpjLkL2H6nE8n1JoK1/Untitled?node-id=0-1&t=ZLUFLajW7zX6hd69-1"
+    },
+    {
+      title: "Mobile Banking App",
+      description: "Modern mobile banking interface focusing on simplicity and quick transactions.",
+      image: "/images/figma2.png",
+      tags: ["Mobile UI", "Fintech", "UX Design", "Multiple Pages"],
+      figmaUrl: "https://www.figma.com/design/aHByU7ea58VdM4mMnoPJLD/Untitled?node-id=0-1&t=w4etNQ8JBlpnixjR-1"
+    },
+    {
+      title: "Portfolio",
+      description: "This was a design I needed to make for a portfolio from a friend to improve his previous design.",
+      image: "/images/figma3.png",
+      tags: ["Minimalist Design", "Dark Theme", "UI/UX", "Developer Portfolio"],
+      figmaUrl: "https://www.figma.com/design/Fx7qnFU8C7S6bM0Au370w6/Untitled?node-id=0-1&t=NiOBVEvb832NaVkz-1"
     }
   ]
 
@@ -166,14 +199,11 @@ export default function Portfolio() {
         <meta name="description" content="Personal portfolio of Kobe Janssens" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/favicon.png" />
-          {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kobejanssens.vercel.app/" />
         <meta property="og:title" content="Kobe Janssens | Web Developer" />
         <meta property="og:description" content="Personal portfolio of Kobe Janssens, a web developer specializing in modern, functional websites." />
         <meta property="og:image" content="https://kobejanssens.vercel.app/images/preview-image.png" />
-  
-        {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://kobejanssens.vercel.app/" />
         <meta property="twitter:title" content="Kobe Janssens | Web Developer" />
@@ -192,7 +222,12 @@ export default function Portfolio() {
       <main className="pt-24 relative z-10">
         <HeroSection isMobile={isMobile} scrollToSection={scrollToSection} />
         <AboutSection />
-        <ProjectsSection projects={projects} />
+        <WorkSection 
+          projects={projects} 
+          designs={designs} 
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
         <ContactSection onSubmit={handleSubmit} formRef={formRef} />
       </main>
 
@@ -250,7 +285,7 @@ function Header({ scrolled, isMobile, menuOpen, setMenuOpen, scrollToSection }: 
               >
                 <div className="w-full h-full pt-8 pb-8 px-6 overflow-y-auto">
                   <ul className="flex flex-col items-center space-y-8">
-                    {['home', 'about', 'projects', 'contact'].map((item) => (
+                    {['home', 'about', 'work', 'contact'].map((item) => (
                       <li key={item} className="overflow-hidden">
                         <button
                           onClick={() => handleNavClick(item)}
@@ -267,7 +302,7 @@ function Header({ scrolled, isMobile, menuOpen, setMenuOpen, scrollToSection }: 
             </>
           ) : (
             <ul className="flex space-x-8">
-              {['home', 'about', 'projects', 'contact'].map((item) => (
+              {['home', 'about', 'work', 'contact'].map((item) => (
                 <li key={item}>
                   <button
                     onClick={() => handleNavClick(item)}
@@ -304,7 +339,7 @@ function HeroSection({ isMobile, scrollToSection }: HeroSectionProps) {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <button
-              onClick={() => scrollToSection('projects')}
+              onClick={() => scrollToSection('work')}
               className="px-8 py-4 bg-purple-600 text-white rounded-lg font-medium transition-all duration-300 relative overflow-hidden group cursor-pointer hover:shadow-lg hover:shadow-purple-500/30 hover:-translate-y-1"
             >
               <span className="relative z-10">View My Work</span>
@@ -384,64 +419,181 @@ function AboutSection() {
   )
 }
 
-interface ProjectsSectionProps {
+interface WorkSectionProps {
   projects: Project[]
+  designs: Design[]
+  activeTab: 'development' | 'design'
+  setActiveTab: (tab: 'development' | 'design') => void
 }
 
-function ProjectsSection({ projects }: ProjectsSectionProps) {
+function WorkSection({ projects, designs, activeTab, setActiveTab }: WorkSectionProps) {
+  const tabRef = useRef<HTMLDivElement>(null)
+  const indicatorRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (tabRef.current && indicatorRef.current) {
+      const tabs = tabRef.current.querySelectorAll('button')
+      const activeTabElement = tabs[activeTab === 'development' ? 0 : 1]
+      
+      if (activeTabElement) {
+        const { offsetLeft, offsetWidth } = activeTabElement
+        indicatorRef.current.style.transform = `translateX(${offsetLeft}px)`
+        indicatorRef.current.style.width = `${offsetWidth}px`
+      }
+    }
+  }, [activeTab])
+
   return (
-    <section id="projects" className="py-20 border-t border-gray-800 px-6">
+    <section id="work" className="py-20 border-t border-gray-800 px-6">
       <div className="container mx-auto">
-        <SectionTitle>My Projects</SectionTitle>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <div key={project.title} className="bg-gray-900 rounded-lg overflow-hidden border border-gray-800 hover:border-purple-900 transition-all duration-300 group hover:shadow-lg hover:shadow-purple-900/20 relative cursor-default">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="h-48 bg-black flex items-center justify-center p-4 relative overflow-hidden">
-                <Image 
-                  src={project.image} 
-                  alt={project.title}
-                  width={400}
-                  height={200}
-                  className="max-h-full max-w-full object-contain relative z-10 transform group-hover:scale-110 transition-transform duration-500" 
-                />
-                <div className="absolute inset-0 bg-purple-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-              <div className="p-6 relative z-10">
-                <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-purple-400 transition-all duration-300">{project.title}</h3>
-                <p className="text-gray-400 mb-4 group-hover:text-gray-300 transition-all duration-300">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-gray-800 text-purple-400 rounded-full text-xs font-medium hover:bg-purple-600 hover:text-white transition-all duration-300 cursor-default">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-3">
-                  <a 
-                    href={project.liveUrl} 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-purple-400 hover:text-white transition-all duration-300 relative group font-medium cursor-pointer"
-                  >
-                    View Live
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300" />
-                  </a>
-                  <a 
-                    href={project.codeUrl} 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-purple-400 hover:text-white transition-all duration-300 relative group font-medium cursor-pointer"
-                  >
-                    Source Code
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300" />
-                  </a>
-                </div>
+        <SectionTitle>My Work</SectionTitle>
+        
+        {/* Tab Navigation with Sliding Indicator */}
+        <div className="flex justify-center mb-12 relative">
+          <div 
+            ref={tabRef}
+            className="inline-flex rounded-lg bg-gray-900 p-1 border border-gray-800 relative"
+          >
+            <button
+              onClick={() => setActiveTab('development')}
+              className={`px-6 py-2 rounded-md text-sm font-medium relative z-10 transition-colors duration-300 ${
+                activeTab === 'development' ? 'text-white' : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Development
+            </button>
+            <button
+              onClick={() => setActiveTab('design')}
+              className={`px-6 py-2 rounded-md text-sm font-medium relative z-10 transition-colors duration-300 ${
+                activeTab === 'design' ? 'text-white' : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Design
+            </button>
+            
+            {/* Sliding Purple Indicator */}
+            <div
+              ref={indicatorRef}
+              className="absolute h-full bg-purple-600 rounded-md transition-all duration-300 ease-in-out"
+              style={{
+                width: '100px',
+                left: 0,
+                top: 0
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Content Area with Horizontal Scroll Effect */}
+        <div className="relative overflow-hidden">
+          <div 
+            className={`flex transition-transform duration-500 ease-in-out ${
+              activeTab === 'design' ? '-translate-x-full' : 'translate-x-0'
+            }`}
+          >
+            {/* Development Projects - Left Side */}
+            <div className="w-full flex-shrink-0 px-4">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {projects.map((project) => (
+                  <div key={project.title} className="relative group overflow-hidden rounded-xl cursor-default">
+                    <div className="relative z-10 h-full bg-gray-900 border border-gray-800 rounded-xl overflow-hidden transition-all duration-500 group-hover:border-purple-600/50">
+                      <div className="h-48 bg-black flex items-center justify-center p-4 relative overflow-hidden">
+                        <Image 
+                          src={project.image} 
+                          alt={project.title}
+                          width={400}
+                          height={200}
+                          className="max-h-full max-w-full object-contain relative z-10 transform group-hover:scale-110 transition-transform duration-500" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-purple-400 transition-all duration-300">{project.title}</h3>
+                        <p className="text-gray-400 mb-4 group-hover:text-gray-300 transition-all duration-300">
+                          {project.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {project.tags.map(tag => (
+                            <span key={tag} className="px-3 py-1 bg-gray-800 text-purple-400 rounded-full text-xs font-medium hover:bg-purple-600 hover:text-white transition-all duration-300 cursor-default">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="flex gap-3">
+                          <a 
+                            href={project.liveUrl} 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-purple-400 hover:text-white transition-all duration-300 relative group font-medium cursor-pointer"
+                          >
+                            View Live
+                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300" />
+                          </a>
+                          <a 
+                            href={project.codeUrl} 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-purple-400 hover:text-white transition-all duration-300 relative group font-medium cursor-pointer"
+                          >
+                            Source Code
+                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-black/70 to-black/90 rounded-xl z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute -inset-2 rounded-xl bg-purple-600/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
+            
+            {/* Design Work - Right Side */}
+            <div className="w-full flex-shrink-0 px-4">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {designs.map((design) => (
+                  <div key={design.title} className="relative group overflow-hidden rounded-xl cursor-default">
+                    <div className="relative z-10 h-full bg-gray-900 border border-gray-800 rounded-xl overflow-hidden transition-all duration-500 group-hover:border-purple-600/50">
+                      <div className="h-64 bg-black flex items-center justify-center p-4 relative overflow-hidden">
+                        <Image 
+                          src={design.image} 
+                          alt={design.title}
+                          width={400}
+                          height={300}
+                          className="max-h-full max-w-full object-contain relative z-10 transform group-hover:scale-110 transition-transform duration-500" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-purple-400 transition-all duration-300">{design.title}</h3>
+                        <p className="text-gray-400 mb-4 group-hover:text-gray-300 transition-all duration-300">
+                          {design.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {design.tags.map(tag => (
+                            <span key={tag} className="px-3 py-1 bg-gray-800 text-purple-400 rounded-full text-xs font-medium hover:bg-purple-600 hover:text-white transition-all duration-300 cursor-default">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <a 
+                          href={design.figmaUrl} 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-purple-400 hover:text-white transition-all duration-300 relative group font-medium cursor-pointer"
+                        >
+                          View in Figma
+                          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300" />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-black/70 to-black/90 rounded-xl z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute -inset-2 rounded-xl bg-purple-600/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
