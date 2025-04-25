@@ -79,7 +79,7 @@ export default function Portfolio() {
     {
       title: "Cobalt QOL website",
       description: "The personal website for Cobalt QOL mod, this is a Quality-Of-Life mod for hypixel skyblock and showcases the development team and other important things about cobalt.",
-      image: "/images/cobalt_logo_noBG.png",
+      image: "/images/cobalt-mockup.png",
       tags: ["HTML", "CSS", "JavaScript", "Tailwind", "Next.js"],
       liveUrl: "https://quiteboring.dev/cobalt",
       codeUrl: "https://github.com/Kobe0103/quiteboring.github.io/tree/master/app/cobalt"
@@ -87,18 +87,18 @@ export default function Portfolio() {
     {
       title: "Quiteboring.dev",
       description: "A developer portfolio website I built for a Minecraft mod developer.",
-      image: "/images/dev.png",
+      image: "/images/nathan-mockup.png",
       tags: ["HTML", "Tailwind", "JavaScript", "Next.js"],
       liveUrl: "https://quiteboring.dev/",
       codeUrl: "https://github.com/Kobe0103/quiteboring.github.io"
     },
     {
-      title: "Task Forge",
-      description: "An advanced task managing website made for learning web development.",
-      image: "/images/tasker.png",
-      tags: ["HTML", "CSS", "JavaScript"],
-      liveUrl: "https://task-managingqsdsqd.netlify.app",
-      codeUrl: "https://github.com/Kobe0103/Task-Manager"
+      title: "Coming Soon",
+      description: "Project Coming Soon!",
+      image: "/images/coming-soon.png",
+      tags: [""],
+      liveUrl: "",
+      codeUrl: ""
     }
   ]
 
@@ -106,21 +106,21 @@ export default function Portfolio() {
     {
       title: "A website template",
       description: "A sleek black landing page design for website that you can use for almost everything.",
-      image: "/images/figma1.png",
+      image: "/images/figma-1.png",
       tags: ["UI Design", "Landing Page", "Style Guide", "Dark Mode"],
       figmaUrl: "https://www.figma.com/design/zjVkLpjLkL2H6nE8n1JoK1/Untitled?node-id=0-1&t=ZLUFLajW7zX6hd69-1"
     },
     {
       title: "Mobile Banking App",
       description: "Modern mobile banking interface focusing on simplicity and quick transactions.",
-      image: "/images/figma2.png",
+      image: "/images/figma-2.png",
       tags: ["Mobile UI", "Fintech", "UX Design", "Multiple Pages"],
       figmaUrl: "https://www.figma.com/design/aHByU7ea58VdM4mMnoPJLD/Untitled?node-id=0-1&t=w4etNQ8JBlpnixjR-1"
     },
     {
       title: "Portfolio",
       description: "This was a design I needed to make for a portfolio from a friend to improve his previous design.",
-      image: "/images/figma3.png",
+      image: "/images/figma-3.png",
       tags: ["Minimalist Design", "Dark Theme", "UI/UX", "Developer Portfolio"],
       figmaUrl: "https://www.figma.com/design/Fx7qnFU8C7S6bM0Au370w6/Untitled?node-id=0-1&t=NiOBVEvb832NaVkz-1"
     }
